@@ -6,9 +6,6 @@
   "scripts": {
     "build": "tsc",
     "dev:screenshot": "ts-node src/run-local.ts",
-    "package": "npm run build && cd dist && zip -r ../function.zip . && cd .. && zip -r function.zip node_modules --exclude 'node_modules/typescript/*' 'node_modules/ts-node/*' 'node_modules/@types/*' 'node_modules/playwright/*'",
-    "deploy:local": "npm run package && aws lambda create-function --function-name screenshot-processor --runtime nodejs20.x --handler handler.handler --role arn:aws:iam::000000000000:role/lambda-role --zip-file fileb://function.zip --endpoint-url http://localhost:4566 --region us-east-1",
-    "update:local": "npm run package && aws lambda update-function-code --function-name screenshot-processor --zip-file fileb://function.zip --endpoint-url http://localhost:4566 --region us-east-1",
     "package:prod": "npm ci --omit=dev && npm run build && cd dist && zip -r ../function.zip . && cd .. && zip -r function.zip node_modules && npm install"
   },
   "dependencies": {
