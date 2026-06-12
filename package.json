@@ -1,0 +1,9 @@
+{
+  "name": "web-screenshot-service",
+  "private": true,
+  "scripts": {
+    "local:up": "bash infrastructure/local/setup.sh",
+    "local:down": "docker compose -f infrastructure/local/docker-compose.yml down",
+    "local:logs": "docker compose -f infrastructure/local/docker-compose.yml logs -f"
+  }
+}
