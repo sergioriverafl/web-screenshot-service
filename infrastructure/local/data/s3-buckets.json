@@ -1,0 +1,23 @@
+{
+  "000000000000/web-screenshots-bucket" : {
+    "name" : "web-screenshots-bucket",
+    "creationDate" : "2026-06-12T21:05:43.465601839Z",
+    "versioningStatus" : null,
+    "tags" : { },
+    "notificationConfiguration" : null,
+    "objectLockEnabled" : false,
+    "defaultRetention" : null,
+    "policy" : null,
+    "corsConfiguration" : null,
+    "lifecycleConfiguration" : null,
+    "transitionDefaultMinimumObjectSize" : null,
+    "acl" : null,
+    "encryptionConfiguration" : null,
+    "publicAccessBlockConfiguration" : null,
+    "ownershipControlsConfiguration" : null,
+    "requestPaymentPayer" : null,
+    "region" : "us-east-1",
+    "websiteConfiguration" : null,
+    "versioningEnabled" : false
+  }
+}
