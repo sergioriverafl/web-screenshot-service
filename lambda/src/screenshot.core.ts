@@ -5,7 +5,8 @@ import { ScreenshotPayload, ScreenshotResult } from "./types";
 import { writeFileSync, mkdirSync } from "fs";
 import { join } from "path";
 
-const IS_LAMBDA = !!process.env.AWS_EXECUTION_ENV || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
+const IS_LAMBDA =
+  !!process.env.AWS_EXECUTION_ENV || !!process.env.AWS_LAMBDA_FUNCTION_NAME;
 
 export async function runScreenshot(
   payload: Partial<ScreenshotPayload> & { url: string },
@@ -32,17 +33,19 @@ export async function runScreenshot(
     await page.waitForTimeout(1_500);
 
     const screenshotBuffer = await page.screenshot({ fullPage, type: "png" });
+    const buffer = Buffer.from(screenshotBuffer);
 
-    if (IS_LAMBDA) {
-      // Producción: sube a S3
-      await uploadToS3(s3Bucket, s3Key, Buffer.from(screenshotBuffer));
-    } else {
-      // Local: guarda en lambda/public/
+    // Siempre sube a S3 (floci en local, AWS en producción)
+    await uploadToS3(s3Bucket, s3Key, buffer);
+    console.log(`☁️  Subido a S3: s3://${s3Bucket}/${s3Key}`);
+
+    // En local también guarda una copia en lambda/public/ para inspección rápida
+    if (!IS_LAMBDA) {
       const publicDir = join(__dirname, "../public");
       mkdirSync(publicDir, { recursive: true });
       const filePath = join(publicDir, `${jobId}.png`);
-      writeFileSync(filePath, screenshotBuffer);
-      console.log(`📁 Screenshot guardado en: ${filePath}`);
+      writeFileSync(filePath, buffer);
+      console.log(`📁 Copia local guardada en: ${filePath}`);
     }
 
     const durationMs = Date.now() - startTime;

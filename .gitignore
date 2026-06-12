@@ -147,3 +147,4 @@ lambda/.DS_Store
 /lambda/public
 .DS_Store
 lambda/function.zip
+/infrastructure/local/data
