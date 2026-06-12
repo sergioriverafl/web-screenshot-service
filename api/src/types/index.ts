@@ -1,8 +1,6 @@
 export interface ScreenshotRequest {
   url: string;
   fullPage?: boolean;
-  width?: number;
-  height?: number;
 }
 
 export interface ScreenshotJob {
