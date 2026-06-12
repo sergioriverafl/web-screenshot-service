@@ -141,3 +141,8 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+api/src/.DS_Store
+api/.DS_Store
+lambda/.DS_Store
+/lambda/public
+.DS_Store

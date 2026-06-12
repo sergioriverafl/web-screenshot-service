@@ -1,0 +1,24 @@
+{
+  "name": "screenshot-lambda",
+  "version": "1.0.0",
+  "description": "Lambda para captura de pantallas con Playwright",
+  "main": "dist/handler.js",
+  "scripts": {
+    "build": "tsc && npm run copy-assets",
+    "copy-assets": "cp -r node_modules/@sparticuz/chromium/bin dist/ 2>/dev/null || true",
+    "package": "npm run build && cd dist && zip -r ../function.zip . && cd .. && zip -r function.zip node_modules/@sparticuz/chromium",
+    "deploy": "aws lambda update-function-code --function-name screenshot-processor --zip-file fileb://function.zip",
+    "dev:screenshot": "ts-node src/run-local.ts"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.600.0",
+    "@sparticuz/chromium": "^123.0.1",
+    "dotenv": "^17.4.2",
+    "playwright-core": "^1.44.1"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.139",
+    "@types/node": "^20.14.0",
+    "typescript": "^5.4.5"
+  }
+}
