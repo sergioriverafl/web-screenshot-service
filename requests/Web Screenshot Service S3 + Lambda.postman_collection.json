@@ -1,0 +1,116 @@
+{
+  "info": {
+    "_postman_id": "5609413b-24a1-44e4-87df-7a637181635d",
+    "name": "Web Screenshot Service S3 + Lambda",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "21192507"
+  },
+  "item": [
+    {
+      "name": "Api",
+      "item": [
+        {
+          "name": "screenshots",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SCREENSHOT_API_BASE_URL}}/api/v1/screenshots",
+              "host": [
+                "{{SCREENSHOT_API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "screenshots"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "screenshots",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"url\": \"https://fb.com/\",\n    \"fullPage\": true\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{SCREENSHOT_API_BASE_URL}}/api/v1/screenshots",
+              "host": [
+                "{{SCREENSHOT_API_BASE_URL}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "screenshots"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "health",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{SCREENSHOT_API_BASE_URL}}/health",
+              "host": [
+                "{{SCREENSHOT_API_BASE_URL}}"
+              ],
+              "path": [
+                "health"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "SCREENSHOT_API_BASE_URL",
+      "value": "",
+      "disabled": true,
+      "description": "Dev"
+    },
+    {
+      "key": "SCREENSHOT_API_BASE_URL",
+      "value": "",
+      "description": "Local"
+    }
+  ]
+}
